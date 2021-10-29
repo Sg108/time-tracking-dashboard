@@ -2,111 +2,12 @@ let current=document.querySelector('.btn-1')
 const btn1=document.querySelector('.btn-1')
 const btn2=document.querySelector('.btn-2')
 const btn3=document.querySelector('.btn-3')
-const data=[
-    {
-      "title": "Work",
-      "timeframes": {
-        "daily": {
-          "current": 5,
-          "previous": 7
-        },
-        "weekly": {
-          "current": 32,
-          "previous": 36
-        },
-        "monthly": {
-          "current": 103,
-          "previous": 128
-        }
-      }
-    },
-    {
-      "title": "Play",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 2
-        },
-        "weekly": {
-          "current": 10,
-          "previous": 8
-        },
-        "monthly": {
-          "current": 23,
-          "previous": 29
-        }
-      }
-    },
-    {
-      "title": "Study",
-      "timeframes": {
-        "daily": {
-          "current": 0,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 4,
-          "previous": 7
-        },
-        "monthly": {
-          "current": 13,
-          "previous": 19
-        }
-      }
-    },
-    {
-      "title": "Exercise",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 4,
-          "previous": 5
-        },
-        "monthly": {
-          "current": 11,
-          "previous": 18
-        }
-      }
-    },
-    {
-      "title": "Social",
-      "timeframes": {
-        "daily": {
-          "current": 1,
-          "previous": 3
-        },
-        "weekly": {
-          "current": 5,
-          "previous": 10
-        },
-        "monthly": {
-          "current": 21,
-          "previous": 23
-        }
-      }
-    },
-    {
-      "title": "Self Care",
-      "timeframes": {
-        "daily": {
-          "current": 0,
-          "previous": 1
-        },
-        "weekly": {
-          "current": 2,
-          "previous": 2
-        },
-        "monthly": {
-          "current": 7,
-          "previous": 11
-        }
-      }
-    }
-  ]
-const work1=document.querySelector('.main-2 h1 span')
+let data=[]
+fetch('https://raw.githubusercontent.com/Sg108/time-tracking-dashboard/main/data.json')
+     .then(res=>res.json())
+     .then((dat)=>{
+       data=dat
+       const work1=document.querySelector('.main-2 h1 span')
 const work2=document.querySelector('.main-2 h5 span')
 const play1=document.querySelector('.main-3 h1 span')
 const play2=document.querySelector('.main-3 h5 span')
@@ -122,6 +23,7 @@ const selfcare2=document.querySelector('.main-7 h5 span')
 current.classList.add("active")
 
 function f1(){
+  console.log(data)
    work1.innerHTML=data[0].timeframes.daily.current
    work2.innerHTML=data[0].timeframes.daily.previous
    play1.innerHTML=data[1].timeframes.daily.current
@@ -187,3 +89,6 @@ btn3.addEventListener('click',()=>{
     f3()
 })
 
+
+     })
+     .catch(err=>console.log(err))
